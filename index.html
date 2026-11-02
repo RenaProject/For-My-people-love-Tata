@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Untuk Ardita 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--pink:#f7a8c8;--hot:#e8548f;--ink:#5a2a3f;--card:#fff;--veil:rgba(255,248,250,.45)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#4a2034;--veil:rgba(255,240,246,.35)}}
+:root[data-theme="dark"]{--ink:#4a2034;--veil:rgba(255,240,246,.35)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:'Quicksand',system-ui,sans-serif;color:var(--ink);background:#fdf0f4;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(var(--veil),var(--veil)),url(bg.jpg) center top/cover no-repeat;z-index:-1}
+.screen{display:none;min-height:100%;flex-direction:column;align-items:center;justify-content:center;padding:24px 18px;text-align:center;gap:14px}
+.screen.on{display:flex;animation:in .6s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+h1{font-family:'Dancing Script',cursive;font-size:clamp(34px,9vw,52px);margin:0;color:var(--hot);text-shadow:0 2px 0 #fff,0 0 12px #fff}
+.name{font-family:'Dancing Script',cursive;font-size:clamp(30px,8vw,44px);font-weight:700;color:var(--ink);text-shadow:0 0 10px #fff,0 0 4px #fff}
+.sub{font-weight:700;text-shadow:0 0 8px #fff,0 0 4px #fff;max-width:320px;margin:0}
+.bubble{position:relative;width:min(92vw,420px);padding:24px 22px;background:#fff;border:6px solid #fbbad9;box-shadow:-6px 6px 0 #c9c9c9;margin-bottom:30px;z-index:1}
+.bubble::before,.bubble::after{content:"";position:absolute;clip-path:polygon(0 0,100% 0,100% 33%,66% 33%,66% 66%,33% 66%,33% 100%,0 100%)}
+.bubble::before{left:36px;bottom:-30px;width:30px;height:24px;background:#fbbad9}
+.bubble::after{left:42px;bottom:-24px;width:18px;height:18px;background:#fff}
+.bubble p{margin:0 0 10px;font-weight:700;line-height:1.5;font-size:16px}
+.bubble .no{color:var(--hot);font-size:13px}
+textarea{width:100%;min-height:84px;border:2px solid var(--pink);border-radius:10px;padding:10px;font:600 15px 'Quicksand',sans-serif;color:var(--ink);background:#fff8fb;resize:none}
+textarea:focus{outline:none;border-color:var(--hot)}
+.btn{font:700 16px 'Quicksand',sans-serif;color:#fff;background:var(--hot);border:0;padding:12px 26px;cursor:pointer;box-shadow:0 4px 0 #b83a6c,0 0 0 3px #fff;border-radius:4px;transition:transform .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b83a6c,0 0 0 3px #fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:0 4px 0 #cfcfcf,0 0 0 3px var(--pink)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.sticker{width:130px;height:auto;filter:drop-shadow(0 3px 6px rgba(0,0,0,.15))}
+.sticker.big{width:170px}
+.float{animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px) rotate(2deg)}}
+.dots{display:flex;gap:6px;justify-content:center}
+.dots i{width:10px;height:10px;background:#fff;border:2px solid var(--pink);border-radius:2px}
+.dots i.d{background:var(--hot);border-color:var(--hot)}
+.heart{position:fixed;top:-30px;pointer-events:none;z-index:9;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+.letter{background:#fff;border:3px solid var(--pink);border-radius:6px;padding:16px;max-width:340px;font-weight:600;line-height:1.7;box-shadow:0 6px 0 var(--pink)}
+.mini{font-size:12px;font-weight:700;background:#fff;border-radius:6px;padding:6px 10px}
+#music{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;z-index:10;display:none;width:42px;height:42px;border-radius:50%;border:3px solid #fff;background:var(--hot);color:#fff;font-size:18px;cursor:pointer}
+</style></head><body>
+<button id="music" aria-label="Musik">♪</button>
+<audio id="bgm" loop></audio>
+
+<section class="screen on" id="s0">
+  <img class="sticker big float" src="s1.png" alt="">
+  <h1>Selamat datang 💗</h1>
+  <div class="name">Ardita Putri Kasih</div>
+  <p class="sub">Ada sesuatu yang spesial buat kamu. Jawab beberapa pertanyaan dulu ya ✨</p>
+  <button class="btn" id="start">Mulai</button>
+</section>
+
+<section class="screen" id="s1">
+  <div class="dots" id="dots"></div>
+  <div class="bubble">
+    <p class="no" id="qn"></p>
+    <p id="qt"></p>
+    <textarea id="ans" placeholder="Tulis jawabanmu di sini…"></textarea>
+  </div>
+  <button class="btn" id="next" disabled>Lanjut</button>
+</section>
+
+<section class="screen" id="s2">
+  <img class="sticker float" src="s2.png" alt="">
+  <div class="bubble"><p style="font-size:18px">Makasih ya sudah jawab semuanya, Ardita 🥰<br>Ada satu hal terakhir…</p></div>
+  <button class="btn" id="toFinal">Lanjut 💌</button>
+</section>
+
+<section class="screen" id="s3">
+  <img class="sticker float" src="s1.png" alt="">
+  <div class="bubble"><p style="font-size:20px;font-family:'Dancing Script',cursive;font-weight:700;color:#e8548f;margin-top:6px">“I want you to be my girlfriend”</p><p>Ardita Putri Kasih… 💗</p></div>
+  <div class="row"><button class="btn" id="yes">Yes 💖</button><button class="btn alt" id="no">No</button></div>
+</section>
+
+<section class="screen" id="sYes">
+  <img class="sticker big float" src="s2.png" alt="">
+  <h1>Terimakasih sudah menerimaku❤️❤️</h1>
+  <button class="btn" id="gift">Buka kejutan 🎁</button>
+  <div class="letter" id="letter" style="display:none">Kamu bikin hariku lebih cerah, Ardita 🌷<br>Aku janji akan berusaha jadi yang terbaik buat kamu, saling percaya dan saling menghargai. Mulai hari ini, kita jalani bareng ya 💞<br><b>— Aku</b></div>
+  <div class="mini" id="st"></div>
+  <button class="btn alt" id="share" style="display:none">Kirim jawabanku via WhatsApp</button>
+</section>
+
+<section class="screen" id="sNo">
+  <img class="sticker big" src="s3.png" alt="">
+  <div class="bubble"><p style="font-size:18px">hmm okey ngga papa</p></div>
+  <div class="mini" id="st2"></div>
+  <button class="btn alt" id="share2" style="display:none">Kirim jawabanku via WhatsApp</button>
+</section>
+
+<script>
+const MUSIC_SRC="lagu.mp3";
+const DISCORD_WEBHOOK="https://discord.com/api/webhooks/1566757487812677754/SNBTuJXbCwFahFyQf_Q9yhPnPwiN6yc5yi-qrHN_AndQh5FEL1f_7UAsqmCoHijYUKgN"; // tempel URL webhook Discord di sini
+const WEB3FORMS_KEY=""; // isi access key dari web3forms.com (jawaban dikirim ke emailmu)
+const WA_NUMBER="";     // nomor WA kamu format 62812xxxx (tanpa + dan tanpa 0 di depan)
+const Q=[
+"Kamu punya mantan? Kalau nggak, jawab terserah. Tapi kalau ada, boleh jujur ya, kali aja kamu belum move on.",
+"Apa arti hubungan bagi dirimu?",
+"Kamu serius nggak sama aku?",
+"Semoga kita bisa saling percaya dan saling menghargai yaa!! Tanggapanmu apa?",
+"Terkadang aku merasa nggak enak nggak bisa ajak kamu main leluasa, seperti main bersama atau bertemu. Semoga kamu nggak bosen akan hal itu :) Tanggapanmu?"];
+const $=id=>document.getElementById(id);
+const answers=[];let i=0,final="";
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));window.scrollTo(0,0)}
+function hearts(n){for(let k=0;k<n;k++){const h=document.createElement('div');h.className='heart';h.textContent=['💗','💖','🌸','💕','🌷'][k%5];
+h.style.left=Math.random()*100+'vw';h.style.fontSize=14+Math.random()*22+'px';h.style.animationDuration=3+Math.random()*3+'s';h.style.animationDelay=Math.random()*1.5+'s';
+document.body.appendChild(h);setTimeout(()=>h.remove(),8000)}}
+const audio=$('bgm'),mb=$('music');
+if(MUSIC_SRC){audio.src=MUSIC_SRC;mb.style.display='block';mb.onclick=()=>{audio.paused?audio.play():audio.pause()}}
+function render(){$('qn').textContent='Pertanyaan '+(i+1)+' dari 5';$('qt').textContent=Q[i];$('ans').value=answers[i]||'';
+$('next').textContent=i<4?'Lanjut':'Selesai 💗';$('next').disabled=!$('ans').value.trim();
+$('dots').innerHTML=Q.map((_,k)=>'<i class="'+(k<=i?'d':'')+'"></i>').join('')}
+$('start').onclick=()=>{if(MUSIC_SRC)audio.play().catch(()=>{});render();show('s1')};
+$('ans').oninput=()=>{$('next').disabled=!$('ans').value.trim()};
+$('next').onclick=()=>{answers[i]=$('ans').value.trim();if(i<4){i++;render()}else show('s2')};
+$('toFinal').onclick=()=>show('s3');
+function summary(){return "Jawaban Ardita:\n"+Q.map((q,k)=>(k+1)+". "+q+"\n→ "+answers[k]).join("\n\n")+"\n\nJawaban akhir: "+final}
+async function save(stId,btnId){
+  const st=$(stId),b=$(btnId);
+  b.onclick=()=>window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(summary()),'_blank');
+  try{
+    if(DISCORD_WEBHOOK){
+      const txt=summary();
+      for(let p=0;p<txt.length;p+=1900){
+        const r=await fetch(DISCORD_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'Ardita 💗',content:txt.slice(p,p+1900)})});
+        if(!r.ok)throw 0;
+      }
+    }else if(WEB3FORMS_KEY){
+      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:'Jawaban Ardita 💗 ('+final+')',from_name:'Website Confess',message:summary()})});
+      if(!(await r.json()).success)throw 0;
+    }else throw 0;
+    st.textContent='Jawabanmu sudah terkirim ✔';
+  }catch(e){st.textContent='Kirim jawabanmu ke aku ya 🥺';b.style.display='inline-block'}
+}
+$('yes').onclick=()=>{final="YES 💖 (mau jadi pacar)";show('sYes');hearts(40);save('st','share')};
+$('no').onclick=()=>{final="NO (hmm okey ngga papa)";show('sNo');save('st2','share2')};
+$('gift').onclick=()=>{$('gift').style.display='none';$('letter').style.display='block';hearts(70)};
+</script></body></html>
